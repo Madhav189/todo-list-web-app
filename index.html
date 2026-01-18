@@ -1,24 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Todo App</title>
+    <meta charset="UTF-8">
+    <title>My Todo List</title>
+
+    <!-- Link CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Minimal fallback styling (works even without style.css) */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            padding-top: 60px;
+        }
+
+        .app {
+            background: #ffffff;
+            width: 420px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .add-task {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .add-task input,
+        .add-task select {
+            padding: 8px;
+            flex: 1;
+        }
+
+        .add-task button {
+            padding: 8px 14px;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            background: #eef2f5;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+        }
+
+        li button {
+            margin-left: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
+
 <body>
 
 <div class="app">
     <h1>My Todo List</h1>
 
-    <!-- Add Task -->
+    <!-- ADD TASK SECTION -->
     <div class="add-task">
-        <input type="text" id="taskInput" placeholder="Enter task">
+        <input
+            type="text"
+            id="taskInput"
+            placeholder="Enter task title"
+        >
+
+        <select id="priority">
+            <option value="LOW">LOW</option>
+            <option value="MEDIUM" selected>MEDIUM</option>
+            <option value="HIGH">HIGH</option>
+        </select>
+
+        <input
+            type="date"
+            id="dueDate"
+        >
+
         <button onclick="addTask()">Add</button>
     </div>
 
-    <!-- Task List -->
+    <!-- TASK LIST -->
     <ul id="taskList"></ul>
 </div>
 
-<script src="script.js"></script>~
+<!-- Link JS -->
+<script src="script.js"></script>
+
 </body>
 </html>
