@@ -3,17 +3,31 @@ let tasks = [];
 /**
  * Adds a new task to the list
  */
-function addTask() {
-    const input = document.getElementById("taskInput");
-    const title = input.value.trim();
+async function addTask() {
+    const title = document.getElementById("taskInput").value;
+    const priority = document.getElementById("priority").value;
+    const due_date = document.getElementById("dueDate").value;
 
-    if (title === "") return alert("Task cannot be empty");
+    if (!title) {
+        alert("Task title required");
+        return;
+    }
 
-    tasks.push({ title, status: "PENDING" });
-    input.value = "";
+    await fetch("http://localhost:3000/tasks", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            title,
+            priority,
+            due_date
+        })
+    });
 
-    renderTasks();
+    alert("Task added successfully");
 }
+
 
 /**
  * Deletes a task
@@ -39,3 +53,11 @@ function renderTasks() {
         list.appendChild(li);
     });
 }
+async function loadTasks() {
+    const res = await fetch("http://localhost:3000/tasks");
+    const tasks = await res.json();
+    console.log(tasks);
+}
+
+loadTasks();
+
